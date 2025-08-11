@@ -22,16 +22,15 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-
-        $post = new Post;
-
-        $post->title = $request->input('title');
-        $post->slug = $request->input('slug');
-        $post->categoria = $request->input('categoria');
-        $post->content = $request->input('content');
-
-        $post->save();
-
+        Post::create($request->all()); // Crea un nuevo post con los datos del request
+        // Validación de los datos
+        // $post = new Post;
+        // $post->title = $request->input('title');
+        // $post->slug = $request->input('slug');
+        // $post->categoria = $request->input('categoria');
+        // $post->content = $request->input('content');
+        // $post->save();
+        // Todo esto se puede hacer con el método create
         return redirect()->route('posts.index');
     }
 
@@ -54,16 +53,15 @@ class PostController extends Controller
     }
 
     public function update(Request $request,Post $post){
-
+        $post->update($request->all()); // Actualiza el post con los datos del request
+        // Validación de los datos
         // $post = Post::find($post);
-
-        $post->title = $request->input('title');
-        $post->slug = $request->input('slug');
-        $post->categoria = $request->input('categoria');
-        $post->content = $request->input('content');
-
-        $post->save();
-
+        // $post->title = $request->input('title');
+        // $post->slug = $request->input('slug');
+        // $post->categoria = $request->input('categoria');
+        // $post->content = $request->input('content');
+        // $post->save();
+        // Otra forma de actualizar el post
         return redirect()->route('posts.show', $post);
     }
 

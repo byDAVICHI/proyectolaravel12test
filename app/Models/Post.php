@@ -11,6 +11,17 @@ class Post extends Model
 {
     use HasFactory;
 
+    // protected $fillable = [ // Atributos que se pueden asignar masivamente
+    //     'title',
+    //     'slug',
+    //     'categoria',
+    //     'content',
+    // ];
+
+    protected $guarded = [
+        'is_active', // Atributos que no se pueden asignar masivamente
+    ]; // Atributos que no se pueden asignar masivamente
+
     protected $table = 'posts';
 
     protected $casts = [ // Definición de tipos de datos para los atributos
