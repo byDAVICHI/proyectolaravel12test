@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostCreatedMail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
@@ -22,7 +24,7 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(StorePostRequest $request){
+    public function store(StorePostRequest $request,Post $post){
 
         // Validación de los datos
         // $request->validate([
@@ -32,7 +34,7 @@ class PostController extends Controller
         //     'content' => 'required',
         // ]);
 
-        Post::create($request->all()); // Crea un nuevo post con los datos del request
+        $post = Post::create($request->all()); // Crea un nuevo post con los datos del request
         // Validación de los datos
         // $post = new Post;
         // $post->title = $request->input('title');
@@ -41,6 +43,7 @@ class PostController extends Controller
         // $post->content = $request->input('content');
         // $post->save();
         // Todo esto se puede hacer con el método create
+        Mail::to('prueba@prueba.com')->send(new PostCreatedMail($post));
         return redirect()->route('posts.index');
     }
 
