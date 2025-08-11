@@ -22,6 +22,14 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
+
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'slug' => 'required|unique:posts,slug|max:255',
+            'categoria' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
         Post::create($request->all()); // Crea un nuevo post con los datos del request
         // Validación de los datos
         // $post = new Post;
@@ -53,6 +61,12 @@ class PostController extends Controller
     }
 
     public function update(Request $request,Post $post){
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'slug' => "required|unique:posts,slug,{$post->id}|max:255",
+            'categoria' => 'required|max:255',
+            'content' => 'required',
+        ]);
         $post->update($request->all()); // Actualiza el post con los datos del request
         // Validación de los datos
         // $post = Post::find($post);
