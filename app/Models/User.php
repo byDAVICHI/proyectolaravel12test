@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function phone(){
+        // Primaria: id
+        // Foranea: user_id
+        // Relacion: uno a uno
+        return $this->hasOne(Phone::class, 'user_id', 'id'); 
+        // 3 valores, clase, llave foranea y llave primaria
+    }
 }

@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SumaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostController;   
+use App\Models\Phone;
 use App\Models\Post;
+use App\Models\User;
 
 
 Route::get('/home', [HomeController::class, 'index']);  // Define resource routes for PostController
@@ -67,10 +69,36 @@ Route::get('/posts/{post}', function ($post) {
 */
 
 Route::get('/prueba', function () {
+/*
+// Crear Nuevo Usuario
+User::create([
+            'name' => 'David Luna',S
+            'email' => 'david1@gmail.com',
+            'password' => bcrypt('12345678'),
+            
+            ]);
 
-$post = Post::find(1);
-return $post->is_active;
+        return 'Usuario creado correctamente';
+*/
+/*
+    // Crear Nuevo Telefono
+    Phone::create([
+        'number' => '123456789',
+        'user_id' => 1,
+    ]);
+    return 'Telefono creado correctamente';
+*/
 
+    $phone = Phone::where('user_id', 1)->first(); // Traer el telefono del usuario con ID 1
+    return $phone->user; // Acceder al numero de telefono del usuario
+
+/*
+    $user = User::where('id', 1)
+            ->with('phone') // Cargar la relación 'phone'
+            ->first(); // Traer el usuario con ID 1
+    // return $user; // Acceder al nombre del usuario
+    return $user; // Acceder al numero de telefono del usuario
+*/
     /* Crear Nuevo Post
 
     $post = new Post;
@@ -126,7 +154,4 @@ return $post->is_active;
     $posts->delete();
     return "El post con ID 1 ha sido eliminado";
 */
-
-
-
 });
