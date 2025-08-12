@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment;
+use App\Models\Tag;
 
 class Post extends Model
 {
@@ -27,10 +29,18 @@ class Post extends Model
         'is_active',
         'prueba',
     ]; // Atributos que se pueden asignar masivamente
-
-    public function comments() // Relación uno a muchos con los comentarios
+    
+    // Relación uno a muchos con los comentarios
+    public function comments() 
     {
         return $this->hasMany(Comment::class);
+    }
+
+    // Relacion muchos a muchos
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
 

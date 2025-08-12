@@ -116,7 +116,9 @@ $comment = Post::find(1); // Traer los comentarios del post con ID 1
 return $comment->post; // Acceder a los comentarios del post
 */
 
-
+$post = Post::find(1);
+// return $post->tags; // Acceder a los tags del post
+$post->tags()->sync([1, 2, 3]); // Asociar los tags con ID 1 y 2 al post con ID 1
 
 /*
     $user = User::where('id', 1)
@@ -136,10 +138,6 @@ return $comment->post; // Acceder a los comentarios del post
     $post->save();
     return $post;
     */
-
-/*   $post = Post::find(1); */
-
-
 /*
     Actulizar Registro Post
     $post = Post::where('title', 'Mi primer post 1')->first();
