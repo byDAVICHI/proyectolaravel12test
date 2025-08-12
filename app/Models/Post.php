@@ -18,6 +18,22 @@ class Post extends Model
     //     'content',
     // ];
 
+    protected $fillable = [ // Atributos que se pueden asignar masivamente
+        'title',
+        'slug',
+        'categoria',
+        'content',
+        'published_at',
+        'is_active',
+        'prueba',
+    ]; // Atributos que se pueden asignar masivamente
+
+    public function comments() // Relación uno a muchos con los comentarios
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+
     protected $guarded = [
         'is_active', // Atributos que no se pueden asignar masivamente
     ]; // Atributos que no se pueden asignar masivamente

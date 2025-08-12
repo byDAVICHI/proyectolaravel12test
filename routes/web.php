@@ -5,6 +5,7 @@ use App\Http\Controllers\SumaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;   
+use App\Models\Comment;
 use App\Models\Phone;
 use App\Models\Post;
 use App\Models\User;
@@ -88,9 +89,34 @@ User::create([
     ]);
     return 'Telefono creado correctamente';
 */
-
+/*
     $phone = Phone::where('user_id', 1)->first(); // Traer el telefono del usuario con ID 1
     return $phone->user; // Acceder al numero de telefono del usuario
+*/
+/*
+Post::create([
+    'title' => 'Mi Primer Post 2',
+    'slug' => 'mi-primer-post-2',
+    'categoria' => 'Desarrollo Web',
+    'content' => 'Contenido del primer post 2',
+]);
+return 'Post creado correctamente';
+
+Comment::create([
+    'content' => 'Este es un comentario de prueba 2',
+    'post_id' => 1, // Asegúrate de que el post con ID 1 exista
+]);
+return 'Comentario creado correctamente';
+*/
+/*
+$post = Post::find(1); // Traer el post con ID 1
+return $post->comments; // Acceder a los comentarios del post
+
+$comment = Post::find(1); // Traer los comentarios del post con ID 1
+return $comment->post; // Acceder a los comentarios del post
+*/
+
+
 
 /*
     $user = User::where('id', 1)
